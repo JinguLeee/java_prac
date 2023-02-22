@@ -1,3 +1,5 @@
+package Example;
+
 public class C_Control {
     public static void main(String[] args) {
 

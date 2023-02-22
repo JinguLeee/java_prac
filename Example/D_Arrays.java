@@ -1,3 +1,5 @@
+package Example;
+
 import java.util.Arrays;
 
 public class D_Arrays {
