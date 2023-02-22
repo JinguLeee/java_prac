@@ -1,3 +1,5 @@
+package Example;
+
 public class B_Operator {
     public static void main(String[] args) {
 
