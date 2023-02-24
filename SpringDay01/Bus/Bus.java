@@ -17,13 +17,13 @@ class Bus extends Transportation{
     public boolean CarStatusChange(String carStatus) {
         switch (carStatus){
             case "drive":
-                if (this.carStatus == "drive") return false;
+                if (this.carStatus.equals("drive")) return false;
                 if (!Checkfueling()) return false;
                 this.carStatus  = "drive";
                 System.out.println("운전을 시작합니다~!\n");
                 return true;
             case "garage":
-                if (this.carStatus == "garage") return false;
+                if (this.carStatus.equals("garage")) return false;
                 this.carStatus  = "garage";
                 if (this.currentPassenger > 0){
                     System.out.println(this.currentPassenger + "명의 손님이 타고있습니다. 다 내쫓겠습니다 ㅇㅅㅇ");

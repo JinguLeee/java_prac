@@ -28,7 +28,7 @@ public class BusPlay {
                     break;
                 case "C":   // 상태 변경 CarStatusChange
                 case "c":
-                    bus1.CarStatusChange(((Transportation) bus1).carStatus == "drive" ? "garage" : "drive"); // 현재 상태가 두개밖에 없으니 알아서 바꿔주는걸로!
+                    bus1.CarStatusChange(((Transportation) bus1).carStatus.equals("drive")  ? "garage" : "drive"); // 현재 상태가 두개밖에 없으니 알아서 바꿔주는걸로!
                     break;
                 case "B":    // 승객 탑승 PassengerOnBoard
                 case "b":
