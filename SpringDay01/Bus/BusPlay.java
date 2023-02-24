@@ -16,7 +16,7 @@ public class BusPlay {
             System.out.println("F : 주유하기");
 //        System.out.println("S : 속도 변경"); 운행에 넣은 기능
             System.out.println("Q : 퇴근퇴근~~!!");
-            System.out.println(((Transportation) bus1).carNum + "번 버스 (현재 속도 : " + ((Transportation) bus1).currentSpeed + " , 현재 탑승 인원 : " + ((Transportation) bus1).currentPassenger + ")");
+            System.out.println(((Transportation) bus1).getCarNum() + "번 버스 (현재 속도 : " + ((Transportation) bus1).getCurrentSpeed() + " , 현재 탑승 인원 : " + ((Transportation) bus1).getCurrentPassenger() + ")");
             System.out.print("작동할 기능을 선택해주세요 : ");
 
             Scanner sc = new Scanner(System.in);
@@ -28,7 +28,7 @@ public class BusPlay {
                     break;
                 case "C":   // 상태 변경 CarStatusChange
                 case "c":
-                    bus1.CarStatusChange(((Transportation) bus1).carStatus.equals("drive")  ? "garage" : "drive"); // 현재 상태가 두개밖에 없으니 알아서 바꿔주는걸로!
+                    bus1.CarStatusChange(((Transportation) bus1).getCarStatus().equals("drive")  ? "garage" : "drive"); // 현재 상태가 두개밖에 없으니 알아서 바꿔주는걸로!
                     break;
                 case "B":    // 승객 탑승 PassengerOnBoard
                 case "b":

@@ -4,30 +4,41 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Bus extends Transportation{
-    int busCharge;          // 요금
+    private int busCharge;          // 요금
+
+    public int getBusCharge() {
+        return busCharge;
+    }
+
+    public void setBusCharge(int busCharge) {
+        this.busCharge = busCharge;
+    }
+
     public Bus(String carNum, int busCharge) {
         super(carNum);
-        this.maxPassenger = 30;
-        this.currentPassenger = 0;
+        setMaxPassenger(30);
+        setCurrentPassenger(0);
         this.busCharge = busCharge;
-        this.carStatus = "drive";       // 객체 생성시 최초 상태는 '운행' 상태가 되도록
+        setCarStatus("drive");       // 객체 생성시 최초 상태는 '운행' 상태가 되도록
         // 버스일 때 (운행, 차고지 행) {drive, garage}
     }
+
     @Override
-    public boolean CarStatusChange(String carStatus) {
+    public boolean CarStatusChange(String carStatus) { // true면 진행시켜!
         switch (carStatus){
             case "drive":
-                if (this.carStatus.equals("drive")) return false;
+                if (this.getCarStatus().equals("drive")) return true;
                 if (!Checkfueling()) return false;
-                this.carStatus  = "drive";
+                setCarStatus("drive");
                 System.out.println("운전을 시작합니다~!\n");
                 return true;
             case "garage":
-                if (this.carStatus.equals("garage")) return false;
-                this.carStatus  = "garage";
-                if (this.currentPassenger > 0){
-                    System.out.println(this.currentPassenger + "명의 손님이 타고있습니다. 다 내쫓겠습니다 ㅇㅅㅇ");
-                    this.currentPassenger = 0;
+                if (this.getCarStatus().equals("garage")) return false;
+                this.setCarStatus("garage");
+                this.setCurrentSpeed(0);
+                if (this.getCurrentPassenger() > 0){
+                    System.out.println(this.getCurrentPassenger() + "명의 손님이 타고있습니다. 다 내쫓겠습니다 ㅇㅅㅇ");
+                    this.setCurrentPassenger(0);
                 }
                 System.out.println("차고지로 갑니다ㅜ0ㅜ\n");
                 return true;
@@ -39,7 +50,7 @@ class Bus extends Transportation{
     }
     @Override
     public void PassengerOnBoard() {    // 승객 탑승
-        if (carStatus != "drive") {
+        if (getCarStatus() != "drive") {
             System.out.println("현재는 운행하지 않습니다.\n");
             return;
         }
@@ -58,11 +69,11 @@ class Bus extends Transportation{
             }
         }
 
-        if (currentPassenger + passengerIn < maxPassenger) {
-            currentPassenger += passengerIn;
+        if (getCurrentPassenger() + passengerIn < getMaxPassenger()) {
+            setCurrentPassenger(getCurrentPassenger() + passengerIn);
             System.out.println("승객이 탑승했습니다!");
-            System.out.println("현재 승객 인원 : " + currentPassenger);
-            System.out.println("잔여 승객 인원 : " + (maxPassenger - currentPassenger));
+            System.out.println("현재 승객 인원 : " + getCurrentPassenger());
+            System.out.println("잔여 승객 인원 : " + (getMaxPassenger() - getCurrentPassenger()));
             System.out.println("요금 확인 : " + (passengerIn * busCharge) + "\n");
         }
         else System.out.println("만석입니다. 다음 차를 이용해주세요.\n");

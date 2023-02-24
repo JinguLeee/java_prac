@@ -4,13 +4,71 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 abstract class Transportation implements TransportationFunction{
-    int maxPassenger;       // 최대 승객수
-    int currentPassenger;   // 현재 승객수
-    String carNum;          // (버스) 번호
-    int fueling;            // 주유량
-    int currentSpeed;       // 현재 속도
-    int maxSpeed;           // 최대 속도
-    String carStatus;       // 상태
+    private int maxPassenger;       // 최대 승객수
+    private int currentPassenger;   // 현재 승객수
+    private String carNum;          // (버스) 번호
+    private int fueling;            // 주유량
+    private int currentSpeed;       // 현재 속도
+    private int maxSpeed;           // 최대 속도
+    private String carStatus;       // 상태
+
+    public int getMaxPassenger() {
+        return maxPassenger;
+    }
+
+    public void setMaxPassenger(int maxPassenger) {
+        this.maxPassenger = maxPassenger;
+    }
+
+    public int getCurrentPassenger() {
+        return currentPassenger;
+    }
+
+    public void setCurrentPassenger(int currentPassenger) {
+        this.currentPassenger = currentPassenger;
+    }
+
+    public String getCarNum() {
+        return carNum;
+    }
+
+    public void setCarNum(String carNum) {
+        this.carNum = carNum;
+    }
+
+    public int getFueling() {
+        return fueling;
+    }
+
+    public void setFueling(int fueling) {
+        this.fueling = fueling;
+    }
+
+    public int getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+    public void setCurrentSpeed(int currentSpeed) {
+        this.currentSpeed = currentSpeed;
+    }
+
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    public String getCarStatus() {
+        return carStatus;
+    }
+
+    public void setCarStatus(String carStatus) {
+        this.carStatus = carStatus;
+    }
+
+
 
     public Transportation(String carNum) {
         this.fueling = 100;
@@ -21,8 +79,9 @@ abstract class Transportation implements TransportationFunction{
 
     @Override
     public void Drive() {               // 운행
-        if (CarStatusChange("drive")) return;
-        System.out.println("\n운행을 시작합니다!");
+        if (this.getCarStatus().equals("drive")) System.out.println("\n운행을 시작합니다!");
+        if (!CarStatusChange("drive")) return;
+
         boolean drive = true;
         while (drive){
             drive = SpeedChange();
